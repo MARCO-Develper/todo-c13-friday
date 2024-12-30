@@ -6,7 +6,7 @@ import 'package:todo_c13_friday/widgets/category_event_item.dart';
 class CreateEvent extends StatelessWidget {
   static const String routeName = "CreateEventScreen";
 
-  CreateEvent({super.key});
+  const CreateEvent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,13 @@ class CreateEvent extends StatelessWidget {
                       height: 220,
                       fit: BoxFit.fill,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 SizedBox(
                   height: 40,
                   child: ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(
+                    separatorBuilder: (context, index) => const SizedBox(
                       width: 16,
                     ),
                     scrollDirection: Axis.horizontal,

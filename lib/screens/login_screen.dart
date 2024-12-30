@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:todo_c13_friday/screens/home/home.dart';
 import 'package:todo_c13_friday/screens/register_screen.dart';
+import 'package:todo_c13_friday/service/login_with_google.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const String routeName = "loginScreen";
 
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
 
   @override
@@ -25,7 +30,7 @@ class LoginScreen extends StatelessWidget {
               "assets/images/logo.png",
               height: 150,
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             TextField(
@@ -40,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                     .textTheme
                     .titleSmall!
                     .copyWith(color: Theme.of(context).focusColor),
-                prefixIcon: Icon(Icons.email),
+                prefixIcon: const Icon(Icons.email),
                 border: OutlineInputBorder(
                   borderSide:
                       BorderSide(width: 2, color: Theme.of(context).focusColor),
@@ -58,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             TextField(
@@ -75,8 +80,8 @@ class LoginScreen extends StatelessWidget {
                     .textTheme
                     .titleSmall!
                     .copyWith(color: Theme.of(context).focusColor),
-                prefixIcon: Icon(Icons.lock),
-                suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                prefixIcon: const Icon(Icons.lock),
+                suffixIcon: const Icon(Icons.remove_red_eye_outlined),
                 border: OutlineInputBorder(
                   borderSide:
                       BorderSide(width: 2, color: Theme.of(context).focusColor),
@@ -94,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             Text(
@@ -105,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                   .titleSmall!
                   .copyWith(color: Theme.of(context).primaryColor),
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             ElevatedButton(
@@ -113,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                 Navigator.pushNamed(context, HomeScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
                   backgroundColor: Theme.of(context).primaryColor),
@@ -125,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                     .copyWith(color: Colors.white),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             InkWell(
@@ -148,7 +153,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ])),
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             Row(
@@ -174,7 +179,42 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            Container(
+              width: 361,
+              height: 58,
+              decoration: BoxDecoration(
+                border:
+                    Border.all(width: 1, color: Theme.of(context).primaryColor),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child:OutlinedButton.icon(
+                onPressed: () async {
+                  await signInWithGoogle(context);
+                },
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide.none,
+                ),
+                icon: Image.asset(
+                  'assets/images/google_logo.png',
+                  height: 24,
+                  width: 24,
+                ),
+                label: Text(
+                  "Login With Google",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Theme.of(context).primaryColor),
+                ),
+              ),
+
+
+
+            ),
           ],
         ),
       ),

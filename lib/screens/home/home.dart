@@ -8,7 +8,7 @@ import 'package:todo_c13_friday/screens/home/tabs/profile_tab.dart';
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
 
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           Navigator.pushNamed(context, CreateEvent.routeName);
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedIndex = value;
           setState(() {});
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.map), label: ""),
           BottomNavigationBarItem(
@@ -50,9 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> tabs = [
-    HomeTab(),
-    MapTab(),
-    LoveTab(),
-    ProfileTab(),
+    const HomeTab(),
+    const MapTab(),
+    const LoveTab(),
+    const ProfileTab(),
   ];
 }

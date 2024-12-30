@@ -4,26 +4,26 @@ import 'package:todo_c13_friday/theme/theme.dart';
 
 class LightTheme extends BaseTheme {
   @override
-  Color get backgroundColor => Color(0xFFF2FEFF);
+  Color get backgroundColor => const Color(0xFFF2FEFF);
 
   @override
-  Color get primaryColor => Color(0xFF5669FF);
+  Color get primaryColor => const Color(0xFF5669FF);
 
   @override
-  Color get textColor => Color(0xFF1C1C1C);
+  Color get textColor => const Color(0xFF1C1C1C);
 
   @override
   ThemeData get themeData => ThemeData(
 
         primaryColor: primaryColor,
-        focusColor: Color(0xFF7B7B7B),
+        focusColor: const Color(0xFF7B7B7B),
         scaffoldBackgroundColor: backgroundColor,
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: primaryColor,
 
           shape: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors.white,
               width: 4
             )

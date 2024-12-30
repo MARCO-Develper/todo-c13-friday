@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_c13_friday/main.dart';
+import 'package:todo_c13_friday/on_boarding_screen.dart';
 import 'package:todo_c13_friday/providers/my_provider.dart';
 import 'package:todo_c13_friday/screens/login_screen.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -30,7 +30,7 @@ class IntroductionScreen extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.fill,
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             Text(
@@ -39,14 +39,14 @@ class IntroductionScreen extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             Text(
               "introduction_desc".tr(),
               style: Theme.of(context).textTheme.titleSmall,
             ),
-            SizedBox(
+            const SizedBox(
               height: 28,
             ),
             Row(
@@ -78,7 +78,7 @@ class IntroductionScreen extends StatelessWidget {
                       Theme.of(context).primaryColor,
                       Theme.of(context).secondaryHeaderColor
                     ],
-                    [Colors.yellow, Colors.orange]
+                    const [Colors.yellow, Colors.orange]
                   ],
                   animate: true,
                   // with just animate set to true, default curve = Curves.easeIn
@@ -86,16 +86,16 @@ class IntroductionScreen extends StatelessWidget {
                   // animate must be set to true when using custom curve
                   onToggle: (index) {
                     if (index == 1) {
-                      context.setLocale(Locale('ar'));
+                      context.setLocale(const Locale('ar'));
                     } else {
-                      context.setLocale(Locale('en'));
+                      context.setLocale(const Locale('en'));
                     }
                     print('switched to: $index');
                   },
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -118,7 +118,7 @@ class IntroductionScreen extends StatelessWidget {
                   inactiveBgColor: Colors.grey,
                   inactiveFgColor: Colors.white,
                   totalSwitches: 2,
-                  icons: [
+                  icons: const [
                     FontAwesomeIcons.lightbulb,
                     FontAwesomeIcons.moon,
                   ],
@@ -128,7 +128,7 @@ class IntroductionScreen extends StatelessWidget {
                       Theme.of(context).primaryColor,
                       Theme.of(context).secondaryHeaderColor
                     ],
-                    [Colors.yellow, Colors.orange]
+                    const [Colors.yellow, Colors.orange]
                   ],
                   animate: true,
                   // with just animate set to true, default curve = Curves.easeIn
@@ -141,15 +141,15 @@ class IntroductionScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.routeName);
+                Navigator.pushNamed(context, OnBoardingScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
                   backgroundColor: Theme.of(context).primaryColor),

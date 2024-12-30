@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_c13_friday/on_boarding_screen.dart';
 import 'package:todo_c13_friday/providers/my_provider.dart';
 import 'package:todo_c13_friday/screens/create_event.dart';
 import 'package:todo_c13_friday/screens/home/home.dart';
@@ -18,9 +19,9 @@ void main() async {
     ChangeNotifierProvider(
       create: (context) => MyProvider(),
       child: EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('ar')],
+        supportedLocales: const [Locale('en'), Locale('ar')],
         path: 'assets/translations',
-        fallbackLocale: Locale('en'),
+        fallbackLocale: const Locale('en'),
         child: const MyApp(),
       ),
     ),
@@ -46,11 +47,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: IntroductionScreen.routeName,
       routes: {
-        IntroductionScreen.routeName: (context) => IntroductionScreen(),
-        LoginScreen.routeName: (context) => LoginScreen(),
+        IntroductionScreen.routeName: (context) => const IntroductionScreen(),
+        OnBoardingScreen.routeName: (context) => const OnBoardingScreen(),
+        LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => RegisterScreen(),
-        HomeScreen.routeName: (context) => HomeScreen(),
-        CreateEvent.routeName: (context) => CreateEvent(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        CreateEvent.routeName: (context) => const CreateEvent(),
       },
     );
   }

@@ -7,7 +7,7 @@ class EventItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      child: Container(
+      child: SizedBox(
         height: 260,
         child: Stack(
           children: [

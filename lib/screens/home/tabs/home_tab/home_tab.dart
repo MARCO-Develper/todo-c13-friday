@@ -10,7 +10,7 @@ class HomeTab extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         leadingWidth: 0,
-        leading: SizedBox(),
+        leading: const SizedBox(),
         backgroundColor: Theme.of(context).primaryColor,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,13 +32,13 @@ class HomeTab extends StatelessWidget {
           ],
         ),
         actions: [
-          Icon(
+          const Icon(
             Icons.sunny,
             color: Colors.white,
           ),
           Container(
-            margin: EdgeInsets.all(8),
-            padding: EdgeInsets.symmetric(horizontal: 4),
+            margin: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(8)),
             child: Text(
@@ -50,26 +50,26 @@ class HomeTab extends StatelessWidget {
             ),
           ),
         ],
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(24),
                 bottomRight: Radius.circular(24))),
         bottom: AppBar(
           centerTitle: false,
           leadingWidth: 0,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(24),
                   bottomRight: Radius.circular(24))),
           toolbarHeight: 120,
-          leading: SizedBox(),
+          leading: const SizedBox(),
           backgroundColor: Theme.of(context).primaryColor,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.pin_drop,
                     color: Colors.white,
                   ),
@@ -92,11 +92,11 @@ class HomeTab extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.separated(
-          separatorBuilder: (context, i) => SizedBox(
+          separatorBuilder: (context, i) => const SizedBox(
             height: 24,
           ),
           itemBuilder: (context, index) {
-            return EventItem();
+            return const EventItem();
           },
           itemCount: 20,
         ),
