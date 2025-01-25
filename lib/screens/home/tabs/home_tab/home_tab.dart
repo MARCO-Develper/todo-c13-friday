@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_c13_friday/firebase/firebase_manger.dart';
 import 'package:todo_c13_friday/screens/home/tabs/home_tab/event_item.dart';
 
 class HomeTab extends StatelessWidget {
@@ -89,57 +90,25 @@ class HomeTab extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView.separated(
-          separatorBuilder: (context, i) => const SizedBox(
-            height: 24,
-          ),
-          itemBuilder: (context, index) {
-            return const EventItem();
-          },
-          itemCount: 20,
-        ),
+      body: StreamBuilder(
+        stream: FirebaseManger.getEvent(),
+        builder: (context, snapshot) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ListView.separated(
+              separatorBuilder: (context, i) => const SizedBox(
+                height: 24,
+              ),
+              itemBuilder: (context, index) {
+                return EventItem(
+                  model: snapshot.data!.docs[index].data(),
+                );
+              },
+              itemCount: snapshot.data?.docs.length?? 0,
+            ),
+          );
+        },
       ),
     );
   }
 }
-
-// SafeArea(
-// child: Column(
-// children: [
-// Container(
-// padding: EdgeInsets.symmetric(horizontal: 16),
-// color: Theme.of(context).primaryColor,
-// child: Row(
-// mainAxisAlignment: MainAxisAlignment.spaceBetween,
-// children: [
-
-// Row(
-// children: [
-
-// SizedBox(
-// width: 8,
-// ),
-// Container(
-// margin: EdgeInsets.all(8),
-// padding: EdgeInsets.symmetric(horizontal: 4),
-// decoration: BoxDecoration(
-// color: Colors.white,
-// borderRadius: BorderRadius.circular(8)),
-// child: Text(
-// "EN",
-// style: Theme.of(context)
-//     .textTheme
-//     .titleMedium!
-//     .copyWith(color: Theme.of(context).primaryColor),
-// ),
-// ),
-// ],
-// )
-// ],
-// ),
-// )
-// ],
-// ),
-// );

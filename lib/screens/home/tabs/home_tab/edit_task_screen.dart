@@ -5,25 +5,33 @@ import 'package:todo_c13_friday/models/task_model.dart';
 import 'package:todo_c13_friday/providers/create_event_provider.dart';
 import 'package:todo_c13_friday/widgets/category_event_item.dart';
 
-class CreateEvent extends StatelessWidget {
-  static const String routeName = "CreateEventScreen";
+class EditTaskScreen extends StatelessWidget {
+  static const String routeName = "EditTaskScreen";
+  final TaskModel model;
 
-  CreateEvent({super.key});
-
-  var titleController = TextEditingController();
-  var descriptionController = TextEditingController();
+  const EditTaskScreen({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController titleController =
+    TextEditingController(text: model.title);
+    final TextEditingController descriptionController =
+    TextEditingController(text: model.description);
+
     return ChangeNotifierProvider(
-      create: (context) => CreateEventProvider(),
+      create: (context) => CreateEventProvider()
+        ..setInitialData(
+          selectedCategoryName: model.category,
+          selectedDate: DateTime.fromMillisecondsSinceEpoch(model.date),
+        ),
       builder: (context, child) {
         var provider = Provider.of<CreateEventProvider>(context);
+
         return Scaffold(
           appBar: AppBar(
             iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
             title: Text(
-              "Create Event",
+              "Edit Event",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
@@ -35,22 +43,22 @@ class CreateEvent extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  // Display selected category image
                   ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.asset(
-                        "assets/images/${provider.eventCategories[provider.selectedCategory]}.png",
-                        height: 220,
-                        fit: BoxFit.fill,
-                      )),
-                  const SizedBox(
-                    height: 16,
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.asset(
+                      "assets/images/${provider.eventCategories[provider.selectedCategory]}.png",
+                      height: 220,
+                      fit: BoxFit.fill,
+                    ),
                   ),
+                  const SizedBox(height: 16),
+                  // Category selection
                   SizedBox(
                     height: 40,
                     child: ListView.separated(
-                      separatorBuilder: (context, index) => const SizedBox(
-                        width: 16,
-                      ),
+                      separatorBuilder: (context, index) =>
+                      const SizedBox(width: 16),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return InkWell(
@@ -58,16 +66,16 @@ class CreateEvent extends StatelessWidget {
                             provider.changeCategory(index);
                           },
                           child: CategoryEventItem(
-                              text: provider.eventCategories[index],
-                              isSelected: provider.selectedCategory == index),
+                            text: provider.eventCategories[index],
+                            isSelected: provider.selectedCategory == index,
+                          ),
                         );
                       },
                       itemCount: provider.eventCategories.length,
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
+                  // Title input
                   TextField(
                     controller: titleController,
                     style: Theme.of(context)
@@ -98,9 +106,8 @@ class CreateEvent extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
+                  // Description input
                   TextField(
                     controller: descriptionController,
                     maxLines: 3,
@@ -131,9 +138,8 @@ class CreateEvent extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
+                  // Date selection
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -148,10 +154,11 @@ class CreateEvent extends StatelessWidget {
                         onTap: () async {
                           var date = await showDatePicker(
                             context: context,
-                            initialDate: DateTime.now(),
+                            initialDate: provider.selectedDate,
                             firstDate: DateTime.now()
                                 .subtract(const Duration(days: 7300)),
-                            lastDate: DateTime.now().add(const Duration(days: 365)),
+                            lastDate:
+                            DateTime.now().add(const Duration(days: 365)),
                           );
                           if (date != null) {
                             provider.changeDate(date);
@@ -167,31 +174,35 @@ class CreateEvent extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                  const SizedBox(height: 24),
+                  // Update button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        TaskModel model = TaskModel(
-                            title: titleController.text,
-                            category: provider.selectedCategoryName,
-                            description: descriptionController.text,
-                            date: provider.selectedDate.millisecondsSinceEpoch);
-                        FirebaseManger.addEvent(model).then(
-                          (value) {
+                        TaskModel updatedModel = TaskModel(
+                          id: model.id,
+                          title: titleController.text,
+                          category: provider.selectedCategoryName,
+                          description: descriptionController.text,
+                          date: provider.selectedDate.millisecondsSinceEpoch,
+                        );
+
+                        FirebaseManger.updateTask(updatedModel).then(
+                              (value) {
                             Navigator.pop(context);
                           },
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          backgroundColor: Theme.of(context).primaryColor),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
                       child: Text(
-                        "Add Event",
+                        "Update Event",
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!

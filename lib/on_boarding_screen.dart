@@ -40,7 +40,7 @@ class OnBoardingScreen extends StatelessWidget {
 
         activeSize: const Size(20.92, 8.0),
         activeColor: Theme.of(context).primaryColor,
-        color: Color(0xff1C1C1C),
+        color: const Color(0xff1C1C1C),
         spacing: const EdgeInsets.symmetric(horizontal: 4),
         activeShape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(36)),
