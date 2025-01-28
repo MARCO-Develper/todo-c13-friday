@@ -15,7 +15,7 @@ android {
 
     android {
         ndkVersion = "25.1.8937393"
-   
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -31,11 +31,42 @@ android {
         applicationId = "com.example.todo_c13_friday"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
     }
+
+    buildscript {
+        ext.kotlin_version = '1.7.10'
+        repositories {
+            google()
+            mavenCentral()
+        }
+
+        dependencies {
+            classpath 'com.android.tools.build:gradle:7.3.0'
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        }
+    }
+
+    allprojects {
+        repositories {
+            google()
+            mavenCentral()
+        }
+    }
+
+    rootProject.buildDir = '../build'
+    subprojects {
+        project.buildDir = "${rootProject.buildDir}/${project.name}"
+    }
+    subprojects {
+        project.evaluationDependsOn(':app')
+    }
+
+
 
     buildTypes {
         release {
@@ -45,6 +76,7 @@ android {
         }
     }
 }
+
 
 flutter {
     source = "../.."

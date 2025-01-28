@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_c13_friday/firebase/firebase_manger.dart';
 import 'package:todo_c13_friday/models/task_model.dart';
-import 'package:todo_c13_friday/screens/create_event.dart';
 import 'package:todo_c13_friday/screens/home/tabs/home_tab/edit_task_screen.dart';
 
 class EventItem extends StatelessWidget {

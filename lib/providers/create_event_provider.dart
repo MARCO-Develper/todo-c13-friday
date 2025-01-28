@@ -28,5 +28,9 @@ class CreateEventProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  setInitialData({required String selectedCategoryName, required DateTime selectedDate}) {}
+  setInitialData({required String selectedCategoryName, required DateTime selectedDate}) {
+    int index = eventCategories.indexOf(selectedCategoryName);
+    selectedCategory=index;
+    notifyListeners();
+  }
 }

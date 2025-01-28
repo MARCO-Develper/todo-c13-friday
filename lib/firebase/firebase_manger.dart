@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_c13_friday/models/task_model.dart';
 
 class FirebaseManger {
@@ -36,4 +37,5 @@ class FirebaseManger {
     var collection = getTasksCollection();
     return collection.doc(model.id).update(model.toJson());
   }
+
 }
